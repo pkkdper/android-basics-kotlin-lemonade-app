@@ -18,6 +18,7 @@ package com.example.lemonade
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
@@ -100,11 +101,14 @@ class MainActivity : AppCompatActivity() {
                 squeezeCount = 0
             }
             SQUEEZE -> {
-                squeezeCount += 1
-                lemonSize -= 1
                 if (lemonSize == 0) {
                     lemonadeState = DRINK
+                } else {
+
                 }
+                squeezeCount += 1
+                lemonSize -= 1
+
             }
             DRINK -> {
                 lemonadeState = RESTART
@@ -141,27 +145,36 @@ class MainActivity : AppCompatActivity() {
      */
     private fun setViewElements() {
         val textAction: TextView = findViewById(R.id.text_action)
-        val treeImageView: ImageView = findViewById(R.id.tree_imageView)
+        val treeImageView: ImageView = findViewById(R.id.image_lemon_state)
 
         when (lemonadeState) {
             SELECT -> {
-//                textAction.setText(R.string.lemon_select)
-                val select = getResources().getString(R.string.lemon_select)
+                Log.d("TAG", "textaction select: $textAction")
+//                val select = resources.getString(R.string.lemon_select)
                 textAction.text = getString(R.string.lemon_select)
-
-                Drawable tree = ContextCompat().getDrawable(getApplicationContext(),R.drawable.lemon_tree)
+//                textAction.text = getString(select)
+                treeImageView.setImageResource(R.drawable.lemon_tree)
             }
             SQUEEZE -> {
-                val squeeze = getResources().getString(R.string.lemon_squeeze)
+                Log.d("TAG", "textaction squeeze: $textAction")
+
+//                val squeeze = resources.getString(R.string.lemon_squeeze)
                 textAction.text = getString(R.string.lemon_squeeze)
+
+//                textAction.text = getString(R.string.lemon_squeeze)
+                treeImageView.setImageResource(R.drawable.lemon_squeeze)
             }
             DRINK -> {
-                val drink = getResources().getString(R.string.lemon_drink)
-                textAction.text = getString(R.string.lemon_drink)
+                val drink = resources.getString(R.string.lemon_drink)
+                textAction.text = drink
+
+//                textAction.text = getString(R.string.lemon_drink)
+                treeImageView.setImageResource(R.drawable.lemon_drink)
             }
             else -> {
                 val reset = getResources().getString(R.string.lemon_empty_glass)
-                textAction.text = getString(R.string.lemon_empty_glass)
+//                textAction.text = getString(R.string.lemon_empty_glass)
+                treeImageView.setImageResource(R.drawable.lemon_restart)
             }
         }
 
