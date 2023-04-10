@@ -69,7 +69,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/tree_imageView"
         android:layout_width="220dp"
         android:layout_height="237dp"
         android:layout_marginStart="191dp"
