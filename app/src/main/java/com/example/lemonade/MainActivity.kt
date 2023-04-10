@@ -15,10 +15,12 @@
  */
 package com.example.lemonade
 
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
@@ -139,25 +141,29 @@ class MainActivity : AppCompatActivity() {
      */
     private fun setViewElements() {
         val textAction: TextView = findViewById(R.id.text_action)
+        val treeImageView: ImageView = findViewById(R.id.tree_imageView)
+
         when (lemonadeState) {
             SELECT -> {
 //                textAction.setText(R.string.lemon_select)
                 val select = getResources().getString(R.string.lemon_select)
+                textAction.text = getString(R.string.lemon_select)
 
-//                lemonImage.
+                Drawable tree = ContextCompat().getDrawable(getApplicationContext(),R.drawable.lemon_tree)
             }
             SQUEEZE -> {
                 val squeeze = getResources().getString(R.string.lemon_squeeze)
+                textAction.text = getString(R.string.lemon_squeeze)
             }
             DRINK -> {
                 val drink = getResources().getString(R.string.lemon_drink)
+                textAction.text = getString(R.string.lemon_drink)
             }
             else -> {
                 val reset = getResources().getString(R.string.lemon_empty_glass)
+                textAction.text = getString(R.string.lemon_empty_glass)
             }
         }
-        // TODO: for each state, the textAction TextView should be set to the corresponding string from
-        //  the string resources file. The strings are named to match the state
 
         // TODO: Additionally, for each state, the lemonImage should be set to the corresponding
         //  drawable from the drawable resources. The drawables have the same names as the strings
