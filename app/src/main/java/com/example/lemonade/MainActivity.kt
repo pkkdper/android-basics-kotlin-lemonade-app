@@ -126,12 +126,10 @@ class MainActivity : AppCompatActivity() {
 
         when (lemonadeState) {
             SELECT -> {
-                Log.d("TAG", "textaction select: $textAction")
                 textAction.text = getString(R.string.lemon_select)
                 treeImageView?.setImageResource(R.drawable.lemon_tree)
             }
             SQUEEZE -> {
-                Log.d("TAG", "textaction squeeze: $textAction")
                 textAction.text = getString(R.string.lemon_squeeze)
                 treeImageView?.setImageResource(R.drawable.lemon_squeeze)
             }

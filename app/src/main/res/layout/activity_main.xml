@@ -52,6 +52,7 @@
         android:layout_height="107dp"
         android:layout_marginTop="4dp"
         android:background="#F6E475"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
