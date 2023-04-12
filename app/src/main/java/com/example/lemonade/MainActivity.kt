@@ -96,48 +96,25 @@ class MainActivity : AppCompatActivity() {
         when(lemonadeState) {
             SELECT -> {
                 lemonadeState = SQUEEZE
-                val lemonTree = LemonTree()
                 lemonSize = lemonTree.pick()
                 squeezeCount = 0
             }
             SQUEEZE -> {
-                if (lemonSize == 0) {
-                    lemonadeState = DRINK
-                } else {
-
-                }
                 squeezeCount += 1
                 lemonSize -= 1
-
+                lemonadeState = if (lemonSize == 0) {
+                    DRINK
+                } else {
+                    SQUEEZE
+                }
             }
             DRINK -> {
                 lemonadeState = RESTART
                 lemonSize = -1
             }
-            else -> {
-                lemonadeState = SELECT
-            }
+            RESTART -> lemonadeState = SELECT
         }
-        // TODO: use a conditional statement like 'if' or 'when' to track the lemonadeState
-        //  when the image is clicked we may need to change state to the next step in the
-        //  lemonade making progression (or at least make some changes to the current state in the
-        //  case of squeezing the lemon). That should be done in this conditional statement
-
-        // TODO: When the image is clicked in the SELECT state, the state should become SQUEEZE
-        //  - The lemonSize variable needs to be set using the 'pick()' method in the LemonTree class
-        //  - The squeezeCount should be 0 since we haven't squeezed any lemons just yet.
-
-        // TODO: When the image is clicked in the SQUEEZE state the squeezeCount needs to be
-        //  INCREASED by 1 and lemonSize needs to be DECREASED by 1.
-        //  - If the lemonSize has reached 0, it has been juiced and the state should become DRINK
-        //  - Additionally, lemonSize is no longer relevant and should be set to -1
-
-        // TODO: When the image is clicked in the DRINK state the state should become RESTART
-
-        // TODO: When the image is clicked in the RESTART state the state should become SELECT
-
-        // TODO: lastly, before the function terminates we need to set the view elements so that the
-        //  UI can reflect the correct state
+        setViewElements()
     }
 
     /**
@@ -150,37 +127,23 @@ class MainActivity : AppCompatActivity() {
         when (lemonadeState) {
             SELECT -> {
                 Log.d("TAG", "textaction select: $textAction")
-//                val select = resources.getString(R.string.lemon_select)
                 textAction.text = getString(R.string.lemon_select)
-//                textAction.text = getString(select)
-                treeImageView.setImageResource(R.drawable.lemon_tree)
+                treeImageView?.setImageResource(R.drawable.lemon_tree)
             }
             SQUEEZE -> {
                 Log.d("TAG", "textaction squeeze: $textAction")
-
-//                val squeeze = resources.getString(R.string.lemon_squeeze)
                 textAction.text = getString(R.string.lemon_squeeze)
-
-//                textAction.text = getString(R.string.lemon_squeeze)
-                treeImageView.setImageResource(R.drawable.lemon_squeeze)
+                treeImageView?.setImageResource(R.drawable.lemon_squeeze)
             }
             DRINK -> {
-                val drink = resources.getString(R.string.lemon_drink)
-                textAction.text = drink
-
-//                textAction.text = getString(R.string.lemon_drink)
-                treeImageView.setImageResource(R.drawable.lemon_drink)
+                textAction.text = getString(R.string.lemon_drink)
+                treeImageView?.setImageResource(R.drawable.lemon_drink)
             }
-            else -> {
-                val reset = getResources().getString(R.string.lemon_empty_glass)
-//                textAction.text = getString(R.string.lemon_empty_glass)
-                treeImageView.setImageResource(R.drawable.lemon_restart)
+            RESTART -> {
+                textAction.text = getString(R.string.lemon_empty_glass)
+                treeImageView?.setImageResource(R.drawable.lemon_restart)
             }
         }
-
-        // TODO: Additionally, for each state, the lemonImage should be set to the corresponding
-        //  drawable from the drawable resources. The drawables have the same names as the strings
-        //  but remember that they are drawables, not strings.
     }
 
     /**
